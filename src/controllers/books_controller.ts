@@ -38,8 +38,10 @@ export const updateBook = async (req: Request, res: Response) => {
 
 export const deleteBook = async (req: Request, res: Response) => {
 	const bookId = req.params.bookId;
+	//returns number of rows deleted - 0 if nothing deleted
 	try {
 		const count = await bookService.deleteBook(Number(bookId));
+		console.log(count);
 		if (count) {
 			res.status(200).json("Book successfully deleted");
 			return;
@@ -47,6 +49,7 @@ export const deleteBook = async (req: Request, res: Response) => {
 			res.status(404).json(`No book with id ${bookId}`);
 		}
 	} catch (err) {
+		//internal database error
 		res.status(500).json(err);
 	}
 };
