@@ -1,11 +1,11 @@
 # 📖 Minimalist Book Manager API
 
 - [Description](#description)
-- [Project Requirements](#requirements)
-- [Installation](#Installation)
+- [Project Requirements](#project-requirements)
+- [Installation](#installation)
 - [usage](#usage)
-- [Unit Tests](#tests)
-- [Technologies Used](#tecnologies-used)
+- [Unit Tests](#unit-tests)
+- [Technologies Used](#technologies-used)
 - [Contribute](#contribute)
 
 ## Description
@@ -69,7 +69,7 @@ Available Book API routes to test are:
 | Put    | /api/v1/books/{bookId} | Update a book by id     |
 | Delete | /api/v1/books/{userId} | Remove a book by id     |
 
-### Running the Unit Tests
+## Unit Tests
 
 In order to run the Jest unit tests, firstly install the dependencies (if you haven't already done so)
 
@@ -106,6 +106,6 @@ If you have any questions regarding this project or contents of this repository,
 - email: dat826@gmail.com
 - GitHub: [Beanalini](https://github.com/Beanalini)
 
-## How to Contribute
+## Contribute
 
 If you would like to contribute to this project you can contact me by email at dat826@gmail.com or through my GitHub account @[Beanalini](https://github.com/Beanalini).
