@@ -8,12 +8,24 @@ export const getBooks = async (req: Request, res: Response) => {
 
 export const getBook = async (req: Request, res: Response) => {
 	const bookId = req.params.bookId;
-	const book = await bookService.getBook(Number(bookId));
-
-	if (book) {
-		res.json(book).status(200);
-	} else {
-		res.status(404).json("Not found");
+	try {
+		const book = await bookService.getBook(Number(bookId));
+		if (book) {
+			res.json(book).status(200);
+		} else {
+			//call getBooks to check if book exists in the database
+			const checkBook = await bookService.getBooks();
+			const found = checkBook.find((entry) => {
+				entry.bookId === +bookId;
+			});
+			!found
+				? res
+						.status(404)
+						.json(`Book with ID:${bookId} does not exist in the database`)
+				: res.status(400).json("invalid request");
+		}
+	} catch (err) {
+		res.status(500).json({ message: (err as Error).message });
 	}
 };
 
@@ -55,7 +67,9 @@ export const deleteBook = async (req: Request, res: Response) => {
 			res.status(200).json("Book successfully deleted");
 			return;
 		} else {
-			res.status(404).json(`No book with id ${bookId}`);
+			res
+				.status(404)
+				.json(`Book with ID:${bookId} does not exists in the database`);
 		}
 	} catch (err) {
 		//internal database error
