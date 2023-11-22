@@ -1,30 +1,48 @@
 # 📖 Minimalist Book Manager API
 
-## Introduction
+- [Description](#description)
+- [Project Requirements](#requirements)
+- [Installation](#Installation)
+- [usage](#usage)
+- [Unit Tests](#tests)
+- [Technologies Used](#tecnologies-used)
+- [Contribute](#contribute)
 
-This is the starter repository for the Further APIs session. It provides a start to creating a Minimalist Book Manager API.
+## Description
 
-### Pre-Requisites
+This projects builds upon code provided for a [Minimalist Book Manager API](https://github.com/techreturners/lm-code-book-manager-api-ts) and adds an additional endpoint to delete a book along with exception handling.
 
--   NodeJS installed (v18.12.1 Long Term Support version at time of writing)
+## Project Requirements
 
-### Technologies & Dependencies
+📘 Implement the following User Story with unit tests.
 
--   [TypeScript](https://www.typescriptlang.org/)
--   [ExpressJS](https://expressjs.com/)
--   [Sequelize](https://sequelize.org/)
--   [SQLite3](https://www.npmjs.com/package/sqlite3)
--   [Jest](https://jestjs.io/)
--   [Supertest](https://www.npmjs.com/package/supertest)
--   [ESLint](https://eslint.org/)
+`User Story: As a user, I want to use the Book Manager API to delete a book using its ID`
 
-### How to Get Started
+📘 Add exception handling to handle a POST request for a book ID that already exists.
 
--   Fork this repo to your Github and then clone the forked version of this repo
+📘 Add exception handling to handle a GET request that doesn't exist.
+
+## Installation
+
+After forking and cloning this repo, follow the instructions below to install the application:
+
+Install dependencies:
+
+           npm i
+
+To run application tests:
+
+            npm test
+
+To run the application
+
+            npm start
+
+## Usage
 
 ### Running the application
 
-In order to run the unit tests run, firstly install the dependencies (if you haven't already done so)
+In order to start the application and open the localhost server connection on port 3000, firstly install the dependencies (if you haven't already done so)
 
 ```
 npm install
@@ -34,7 +52,22 @@ Followed by:
 
 ```
 npm start
+
 ```
+
+### Testing API Endpoints
+
+You can test the API routes and perform CRUD operations using an API REST tool such as Insomnia or Postman.
+
+Available Book API routes to test are:
+
+| method | Route                  | Description             |
+| ------ | ---------------------- | ----------------------- |
+| Get    | /api/v1/books          | Get all books           |
+| Get    | /api/v1/books/{bookId} | Get a single book by id |
+| Post   | /api/v1/books          | Add a new book          |
+| Put    | /api/v1/books/{bookId} | Update a book by id     |
+| Delete | /api/v1/books/{userId} | Remove a book by id     |
 
 ### Running the Unit Tests
 
@@ -50,18 +83,29 @@ Followed by:
 npm test
 ```
 
-### Tasks
+## Technologies Used
 
-Here are some tasks for you to work on:
+### Pre-Requisites
 
-📘 Task 1: Implement the following User Story with tests.
+- NodeJS installed (v18.12.1 Long Term Support version at time of writing)
 
-`User Story: As a user, I want to use the Book Manager API to delete a book using its ID`
+### Technologies & Dependencies
 
-📘 Extension Task: Oh no! 😭 We've only covered the happy paths in the solution, can you figure out a way
-to add in exception handling to the project?
+- [TypeScript](https://www.typescriptlang.org/)
+- [ExpressJS](https://expressjs.com/)
+- [Sequelize](https://sequelize.org/)
+- [SQLite3](https://www.npmjs.com/package/sqlite3)
+- [Jest](https://jestjs.io/)
+- [Supertest](https://www.npmjs.com/package/supertest)
+- [ESLint](https://eslint.org/)
 
--   Clue 1: What if someone wants to add a book with an ID for a book that already exists? How do we handle this gracefully?
+## Questions
 
--   Clue 2: What if someone wants to find a book by an ID that doesn't yet exist?
-    How can we improve the API by handling errors gracefully and show a helpful message to the client?
+If you have any questions regarding this project or contents of this repository, please contact me via:
+
+- email: dat826@gmail.com
+- GitHub: [Beanalini](https://github.com/Beanalini)
+
+## How to Contribute
+
+If you would like to contribute to this project you can contact me by email at dat826@gmail.com or through my GitHub account @[Beanalini](https://github.com/Beanalini).
