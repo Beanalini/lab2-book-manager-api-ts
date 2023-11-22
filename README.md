@@ -71,7 +71,7 @@ Available Book API routes to test are:
 
 ### Running the Unit Tests
 
-In order to run the unit tests run, firstly install the dependencies (if you haven't already done so)
+In order to run the Jest unit tests, firstly install the dependencies (if you haven't already done so)
 
 ```
 npm install
