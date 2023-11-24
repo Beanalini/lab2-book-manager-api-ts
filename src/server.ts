@@ -1,8 +1,9 @@
 import { app } from "./app";
+import { CONFIG } from "./config";
 import { populateDummyData } from "./database/database_seed";
 
 const environment = process.env.NODE_ENV || "dev";
-const PORT = 3000;
+const PORT = CONFIG.port;
 
 console.log(`🌍 Running in ${environment} environment`);
 
