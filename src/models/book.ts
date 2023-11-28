@@ -14,6 +14,7 @@ export class Book extends Model<
 	declare bookId: CreationOptional<number>;
 	declare title: string;
 	declare author: string;
+	declare publisher: string;
 	declare description: string;
 }
 
@@ -29,6 +30,10 @@ Book.init(
 			allowNull: false,
 		},
 		author: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		publisher: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
