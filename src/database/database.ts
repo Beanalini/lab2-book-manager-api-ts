@@ -3,9 +3,8 @@ import { CONFIG } from "../config";
 
 // using connection string
 /*const connectionString = `${CONFIG.dbDialect}://${CONFIG.dbUserName}:${CONFIG.dbPassword}@${CONFIG.dbHost}:${process.env.DB_PORT}/${CONFIG.dbName}`;
-console.log(connectionString);
 export let sequelize = new Sequelize(connectionString);
-console.log(sequelize);*/
+*/
 
 export let sequelize = new Sequelize("sqlite::memory:");
 
