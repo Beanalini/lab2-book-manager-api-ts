@@ -29,6 +29,25 @@ export const getBook = async (req: Request, res: Response) => {
 	}
 };
 
+export const getBooksByPublisher = async (req: Request, res: Response) => {
+	const publisher = req.params.publisher.replace(/\+/g, " ");
+
+	console.log("received publisher", publisher);
+	try {
+		const books = await bookService.getBooksByPublisher(String(publisher));
+
+		if (books.length === 0) {
+			res
+				.status(404)
+				.json({ message: "No books found for requested publisher." });
+		} else {
+			res.status(200).json(books);
+		}
+	} catch (err) {
+		res.status(500).json({ error: err });
+	}
+};
+
 export const saveBook = async (req: Request, res: Response) => {
 	const bookToBeSaved = req.body;
 	console.log(req.body);
