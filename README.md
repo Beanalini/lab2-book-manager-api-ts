@@ -1,7 +1,6 @@
 # 📖 Minimalist Book Manager API
 
 - [Description](#description)
-- [Project Requirements](#project-requirements)
 - [Installation](#installation)
 - [usage](#usage)
 - [Unit Tests](#unit-tests)
@@ -33,11 +32,11 @@ DB_PORT=5432
 DB_DIALECT=postgres
 ```
 
-To run the application using postgresSQL database:
+To use a postgresSQL database:
 
          set NODE_ENV=dev
 
-To run the application using sqlite in-memory database:
+To use sqlite in-memory database:
 
          set NODE_ENV=test
 
