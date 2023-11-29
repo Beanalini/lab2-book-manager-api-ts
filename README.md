@@ -111,7 +111,7 @@ npm test
 - [ESLint](https://eslint.org/)
 - [pg](https://www.npmjs.com/package/sqlite3)
 - [pg-hstore](https://www.npmjs.com/pg-hstore)
-- [supertest]https://www.npmjs.com/supertest
+- [supertest](https://www.npmjs.com/supertest)
 - [dotenv](https://www.npmjs.com/dotenv)
 
 ## Questions
