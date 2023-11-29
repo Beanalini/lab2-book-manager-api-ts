@@ -32,7 +32,6 @@ export const getBook = async (req: Request, res: Response) => {
 export const getBooksByPublisher = async (req: Request, res: Response) => {
 	const publisher = req.params.publisher.replace(/\+/g, " ");
 
-	console.log("received publisher", publisher);
 	try {
 		const books = await bookService.getBooksByPublisher(String(publisher));
 

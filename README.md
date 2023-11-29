@@ -10,17 +10,7 @@
 
 ## Description
 
-This projects builds upon code provided for a [Minimalist Book Manager API](https://github.com/techreturners/lm-code-book-manager-api-ts) and adds an additional endpoint to delete a book along with exception handling.
-
-## Project Requirements
-
-📘 Implement the following User Story with unit tests.
-
-`User Story: As a user, I want to use the Book Manager API to delete a book using its ID`
-
-📘 Add exception handling to handle a POST request for a book ID that already exists.
-
-📘 Add exception handling to handle a GET request that doesn't exist.
+This project builds on the [Minimalist Book Manager API](https://github.com/Beanalini/lm-code-book-manager-api-ts) to connect with a PostgreSQL database, add an endpoint that filters books by publisher and includes additional testing and exception handling.
 
 ## Installation
 
@@ -30,11 +20,32 @@ Install dependencies:
 
            npm i
 
+Include a .env database configuration file in the root directory with the following settings:
+
+```
+NODE_ENV=dev
+PORT=<3000>
+DB_NAME=bookshop
+DB_USERNAME=<postgres username>
+DB_PASSWORD=<postgres password>
+DB_HOST=<localhost or 127.0.0.1>
+DB_PORT=5432
+DB_DIALECT=postgres
+```
+
+To run the application using postgresSQL database:
+
+         set NODE_ENV=dev
+
+To run the application using sqlite in-memory database:
+
+         set NODE_ENV=test
+
 To run application tests:
 
             npm test
 
-To run the application
+To run the application:
 
             npm start
 
@@ -42,7 +53,7 @@ To run the application
 
 ### Running the application
 
-In order to start the application and open the localhost server connection on port 3000, firstly install the dependencies (if you haven't already done so)
+In order to start the application, firstly install the dependencies (if you haven't already done so)
 
 ```
 npm install
@@ -61,13 +72,14 @@ You can test the API routes and perform CRUD operations using an API REST tool s
 
 Available Book API routes to test are:
 
-| method | Route                  | Description             |
-| ------ | ---------------------- | ----------------------- |
-| Get    | /api/v1/books          | Get all books           |
-| Get    | /api/v1/books/{bookId} | Get a single book by id |
-| Post   | /api/v1/books          | Add a new book          |
-| Put    | /api/v1/books/{bookId} | Update a book by id     |
-| Delete | /api/v1/books/{userId} | Remove a book by id     |
+| method | Route                               | Description             |
+| ------ | ----------------------------------- | ----------------------- |
+| Get    | /api/v1/books                       | Get all books           |
+| Get    | /api/v1/books/{bookId}              | Get a single book by id |
+| Get    | /api/v1/books/publisher/{publisher} | Get books by publisher  |
+| Post   | /api/v1/books                       | Add a new book          |
+| Put    | /api/v1/books/{bookId}              | Update a book by id     |
+| Delete | /api/v1/books/{userId}              | Remove a book by id     |
 
 ## Unit Tests
 
