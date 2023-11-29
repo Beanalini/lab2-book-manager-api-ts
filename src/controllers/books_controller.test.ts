@@ -14,14 +14,23 @@ const dummyBookData = [
 		bookId: 1,
 		title: "The Hobbit",
 		author: "J. R. R. Tolkien",
+		publisher: "Harper Collins",
 		description: "Someone finds a nice piece of jewellery while on holiday.",
 	},
 	{
 		bookId: 2,
 		title: "The Shop Before Life",
 		author: "Neil Hughes",
+		publisher: "Enthusiastic Whim",
 		description:
 			"Before being born, each person must visit the magical Shop Before Life, where they choose what kind of person they will become down on Earth...",
+	},
+	{
+		bookId: 3,
+		title: "The Silmarillion",
+		author: "J. R. R. Tolkien",
+		publisher: "Harper Collins",
+		description: "A story of rebellion and adventure",
 	},
 ];
 
@@ -59,7 +68,7 @@ describe("GET /api/v1/books endpoint", () => {
 
 		// Assert
 		expect(res.body).toEqual(dummyBookData);
-		expect(res.body.length).toEqual(2);
+		expect(res.body.length).toEqual(3);
 	});
 });
 
@@ -112,7 +121,12 @@ describe("POST /api/v1/books endpoint", () => {
 		// Act
 		const res = await request(app)
 			.post("/api/v1/books")
-			.send({ bookId: 3, title: "Fantastic Mr. Fox", author: "Roald Dahl" });
+			.send({
+				bookId: 4,
+				title: "Fantastic Mr. Fox",
+				publisher: "Harper Collins",
+				author: "Roald Dahl",
+			});
 
 		// Assert
 		expect(res.statusCode).toEqual(201);
@@ -146,7 +160,7 @@ describe("DELETE /api/v1/books{bookID} endpoint", () => {
 		expect(res.statusCode).toEqual(200);
 	});
 
-	test("returns status code 400 when deleting a invalid book", async () => {
+	test("returns status code 400 when deleting an invalid book", async () => {
 		//Arrange
 		jest.spyOn(bookService, "deleteBook").mockResolvedValue(0);
 
@@ -155,5 +169,64 @@ describe("DELETE /api/v1/books{bookID} endpoint", () => {
 
 		// Assert
 		expect(res.statusCode).toEqual(404);
+	});
+});
+
+describe("GET /api/v1/books/publisher/{publisher} endpoint", () => {
+	test("return books with publisher = Harper Collins", async () => {
+		// Arrange
+		const publisher = "Harper Collins";
+		const publisherBooks = dummyBookData.filter(
+			(book) => book.publisher === publisher
+		);
+		jest
+			.spyOn(bookService, "getBooksByPublisher")
+			.mockResolvedValue(publisherBooks as Book[]);
+
+		// Act
+		const res = await request(app).get(
+			"/api/v1/books/publisher/Harper+Collins"
+		);
+
+		// Assert
+		expect(res.body).toEqual(publisherBooks);
+	});
+
+	test("returns success status 200", async () => {
+		// Arrange
+		const publisher = "Harper Collins";
+		const publisherBooks = dummyBookData.filter(
+			(book) => book.publisher === publisher
+		);
+		jest
+			.spyOn(bookService, "getBooksByPublisher")
+			.mockResolvedValue(publisherBooks as Book[]);
+
+		// Act
+		const res = await request(app).get(
+			"/api/v1/books/publisher/Harper+Collins"
+		);
+
+		// Assert
+		expect(res.status).toEqual(200);
+	});
+
+	test("returns 404 status - no matching books found", async () => {
+		// Arrange
+		const publisher = "Penguin";
+		const publisherBooks: Book[] = [];
+
+		jest
+			.spyOn(bookService, "getBooksByPublisher")
+			.mockResolvedValue(publisherBooks);
+
+		// Act
+		const res = await request(app).get(
+			"/api/v1/books/publisher/Harper+Collins"
+		);
+
+		// Assert
+		expect(res.status).toEqual(404);
+		expect(res.body.message).toEqual("No books found for requested publisher.");
 	});
 });
